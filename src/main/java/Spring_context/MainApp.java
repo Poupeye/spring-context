@@ -21,6 +21,8 @@ public class MainApp {
             cart.delete(id);
         } else if (cmd.equals("/cart")) {
             System.out.println(cart.getProductCart());
+        } else if (cmd.equals("/price")) {
+            System.out.println(productRepository.getProducts());
         }
         context.close();
     }
