@@ -24,4 +24,13 @@ public class ProductRepository {
         products.add(new Product(4, "meet", 450));
         products.add(new Product(5, "water", 80));
     }
+
+    public Product getById(int id) {
+        for (Product p : products) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
 }
