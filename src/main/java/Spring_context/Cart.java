@@ -1,5 +1,6 @@
 package Spring_context;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Component
 public class Cart {
+    @Autowired
     private ProductRepository productRepository;
 
     List<Product> productCart;
@@ -23,17 +25,19 @@ public class Cart {
     }
 
     public void add(int id) {
-        for (Product p : productRepository.getProducts()) {
-            if (p.getId() == id);
-            productCart.add(p);
-        }
+        productCart.add(productRepository.getById(id));
     }
 
     public void delete(int id) {
-        for (Product p : productRepository.getProducts()) {
-            if (p.getId() == id);
-            productCart.remove(p);
+        int a = -1;
+        for (Product p : productCart) {
+            if (p.getId() == id) {
+               a = productCart.indexOf(p);
+            }
         }
+        if (a== -1) {
+            return;
+        }
+        productCart.remove(a);
     }
-
 }

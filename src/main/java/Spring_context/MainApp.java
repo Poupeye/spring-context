@@ -13,17 +13,25 @@ public class MainApp {
 
 
         Scanner sc = new Scanner(System.in);
-        String cmd = sc.nextLine();
-        int id = 0;
-        if (cmd.equals("/add " + id)) {
-            cart.add(id);
-        } else if (cmd.equals("/delete" + id)) {
-            cart.delete(id);
-        } else if (cmd.equals("/cart")) {
-            System.out.println(cart.getProductCart());
-        } else if (cmd.equals("/price")) {
-            System.out.println(productRepository.getProducts());
+
+        while (true) {
+            String cmd = sc.nextLine();
+
+            if (cmd.startsWith("/add")) {
+                String[] s = cmd.split(" ");
+                int id = Integer.parseInt(s[1]);
+                cart.add(id);
+            } else if (cmd.startsWith("/delete")) {
+                String[] s = cmd.split(" ");
+                int id = Integer.parseInt(s[1]);
+                cart.delete(id);
+            } else if (cmd.equals("/cart")) {
+                System.out.println(cart.getProductCart());
+            } else if (cmd.equals("/price")) {
+                System.out.println(productRepository.getProducts());
+            } else if (cmd.equals("/q")) {
+                return;
+            }
         }
-        context.close();
     }
 }
