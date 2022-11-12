@@ -24,6 +24,9 @@ public class MainApp {
         } else if (cmd.equals("/price")) {
             System.out.println(productRepository.getProducts());
         }
+        sc.nextLine();
+
+
         context.close();
     }
 }
